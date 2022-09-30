@@ -16,6 +16,8 @@ jobs:
   steps:
   - task: NuGetToolInstaller@1
 
+  - script: cat D:\a\1\Nuget\tempNuGet_326.config
+
   - task: NuGetCommand@2
     inputs:
       restoreSolution: '**/*.sln'
@@ -49,6 +51,8 @@ jobs:
     enabled: false
 
   - task: NuGetToolInstaller@1
+
+  - script: cat D:\a\1\Nuget\tempNuGet_326.config
 
   - task: NuGetCommand@2
     inputs:
