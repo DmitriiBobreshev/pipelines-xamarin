@@ -16,11 +16,12 @@ jobs:
   steps:
   - task: NuGetToolInstaller@1
 
+  - script: ls D:\a\1\Nuget\
+  - script: cat D:\a\1\Nuget\tempNuGet_329.config
+
   - task: NuGetCommand@2
     inputs:
       restoreSolution: '**/*.sln'
-
-  - script: cat D:\a\1\Nuget\tempNuGet_326.config
 
   - task: XamarinAndroid@1
     inputs:
@@ -50,13 +51,14 @@ jobs:
     displayName: 'Select Xamarin SDK version'
     enabled: false
 
+  - script: ls -la /Users/runner/work/1/Nuget
+  - script: cat /Users/runner/work/1/Nuget/tempNuGet_329.config
+
   - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
     inputs:
       restoreSolution: '**/*.sln'
-
-  - script: cat D:\a\1\Nuget\tempNuGet_326.config
 
   - task: XamariniOS@2
     inputs:
