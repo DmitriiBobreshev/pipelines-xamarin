@@ -42,6 +42,7 @@ jobs:
       serverEndpoint: appCenter
       appSlug: 'dmitrii.bobreshev-ua.akvelon.com/appcentertaskAndroid'
       appFile: '$(outputDirectory)/*.apk'
+      releaseNotesInput: 'test release $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)00'
 
         
 # - job: iOS
