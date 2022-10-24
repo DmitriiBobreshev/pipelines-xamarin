@@ -61,4 +61,4 @@ jobs:
       solutionFile: '**/*iOS.csproj'
       configuration: 'Release'
       buildForSimulator: true
-      packageApp: false
+      packageApp: true
