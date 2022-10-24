@@ -37,7 +37,7 @@ jobs:
     inputs:
       pathtoPublish: '$(outputDirectory)'
 
-  - task: AppCenterDistribute@1
+  - task: AppCenterDistribute@2
     inputs:
       serverEndpoint: appCenter
       appSlug: 'dmitrii.bobreshev-ua.akvelon.com/appcentertaskAndroid'
