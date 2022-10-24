@@ -50,8 +50,11 @@ jobs:
 
   # - task: NuGetToolInstaller@1
 
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
+  - task: MSBuild@1
+    inputs:
+      solution: 'AwesomeApp.sln'
+      configuration: 'Release'
+      msbuildArguments: /t:restore
 
   - task: XamariniOS@2
     inputs:
