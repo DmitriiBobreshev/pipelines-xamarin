@@ -71,10 +71,10 @@
 #       buildForSimulator: false
 #       packageApp: true
 
-pool:
-  name: Default
-  # name: Azure Pipelines
-  # vmImage: ubuntu-latest
+  pool:
+    name: Default
+    # name: Azure Pipelines
+    # vmImage: ubuntu-latest
   steps:
   - bash: |
       echo "##vso[build.addbuildtag]BuildName=e00f8cf4-8b30-43ff-97b5-eb3aae673193"
