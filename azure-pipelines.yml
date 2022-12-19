@@ -3,46 +3,46 @@
 # Add steps that test, sign, and distribute the app, save build artifacts, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
 
-jobs:
+# jobs:
 
-- job: Android
-  pool:
-    vmImage: 'windows-2019'
+# - job: Android
+#   pool:
+#     vmImage: 'windows-2019'
 
-  variables:
-    buildConfiguration: 'Release'
-    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+#   variables:
+#     buildConfiguration: 'Release'
+#     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
-  steps:
-  - task: NuGetToolInstaller@1
+#   steps:
+#   - task: NuGetToolInstaller@1
 
-  - task: NuGetCommand@2
-    inputs:
-      restoreSolution: '**/*.sln'
+#   - task: NuGetCommand@2
+#     inputs:
+#       restoreSolution: '**/*.sln'
 
-  - task: XamarinAndroid@1
-    inputs:
-      projectFile: '**/*droid*.csproj'
-      outputDirectory: '$(outputDirectory)'
-      configuration: '$(buildConfiguration)'
-      msbuildVersionOption: '16.0'
+#   - task: XamarinAndroid@1
+#     inputs:
+#       projectFile: '**/*droid*.csproj'
+#       outputDirectory: '$(outputDirectory)'
+#       configuration: '$(buildConfiguration)'
+#       msbuildVersionOption: '16.0'
 
-  - task: AndroidSigning@3
-    inputs:
-      apksign: false
-      zipalign: false
-      apkFiles: '$(outputDirectory)/*.apk'
+#   - task: AndroidSigning@3
+#     inputs:
+#       apksign: false
+#       zipalign: false
+#       apkFiles: '$(outputDirectory)/*.apk'
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(outputDirectory)'
+#   - task: PublishBuildArtifacts@1
+#     inputs:
+#       pathtoPublish: '$(outputDirectory)'
 
-  - task: AppCenterDistribute@3
-    inputs:
-      serverEndpoint: appCenter
-      appSlug: 'dmitrii.bobreshev-ua.akvelon.com/appcentertaskAndroid'
-      appFile: '$(outputDirectory)/*.apk'
-      releaseNotesInput: 'test release $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)00'
+#   - task: AppCenterDistribute@3
+#     inputs:
+#       serverEndpoint: appCenter
+#       appSlug: 'dmitrii.bobreshev-ua.akvelon.com/appcentertaskAndroid'
+#       appFile: '$(outputDirectory)/*.apk'
+#       releaseNotesInput: 'test release $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)00'
 
         
 # - job: iOS
@@ -70,3 +70,22 @@ jobs:
 #       configuration: 'Release'
 #       buildForSimulator: false
 #       packageApp: true
+
+pool:
+  name: Default
+  # name: Azure Pipelines
+  # vmImage: ubuntu-latest
+  steps:
+  - bash: |
+      echo "##vso[build.addbuildtag]BuildName=e00f8cf4-8b30-43ff-97b5-eb3aae673193"
+      echo "##vso[build.addbuildtag]Tag_UnitTestPassed"
+      echo "##vso[build.addbuildtag]8.22.12.09.3519204.FMBase_Main.inc"
+      echo "##vso[build.addbuildtag]Res=asd"
+      echo "##vso[build.updatebuildnumber]ubuntu-build-number-1"
+    displayName: 'Update Build Number 1'
+  - bash: |
+      sleep 10s
+    displayName: 'Sleep'
+  - bash: |
+      echo "##vso[task.setvariable variable=ProjectBuildNumber;]ubuntu-build-number-2"
+    displayName: 'Update Build Number 2'
